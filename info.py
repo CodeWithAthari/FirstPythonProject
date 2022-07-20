@@ -1,8 +1,5 @@
-import datetime
-
 from bs4 import BeautifulSoup
 import requests
-import json
 
 cnic = int(input("Enter CNIC No: "))
 postdata = {"cnicNumber": cnic}
@@ -12,7 +9,7 @@ if response.status_code != 200:
     print("Error Occurred....")
 
 else:
-    output  = []
+    output = []
     soup = BeautifulSoup(response.text, 'html.parser')
     div = soup.find('div', {"class": "result"})
     counter = 0;
@@ -26,14 +23,16 @@ else:
                 # print(rows.text)
                 output.append(rows.text)
 
-    finout = {"Name: ":output[1],"Tehsil: ":output[3],"Division: ":output[5],"CNIC: ":output[7],"Province: ":output[9]}
-    finaloutput = "Name: "+ finout["Name: "] +"\n"+"Tehsil: "+ finout["Tehsil: "] +"\n" +"Division: " + finout["Division: "] + "\n" +"CNIC: " + finout["CNIC: "] + "\n"  + "Province: " + finout["Province: "] + "\n"
+    finout = {"Name: ": output[1], "Tehsil: ": output[3], "Division: ": output[5], "CNIC: ": output[7],
+              "Province: ": output[9]}
+    finaloutput = "Name: " + finout["Name: "] + "\n" + "Tehsil: " + finout["Tehsil: "] + "\n" + "Division: " + finout[
+        "Division: "] + "\n" + "CNIC: " + finout["CNIC: "] + "\n" + "Province: " + finout["Province: "] + "\n"
     print(finaloutput)
     print("Do You Want Do Download File? \n 1.Yes \n 2.No")
-    if int(input("Enter 1 or 2: "))==1:
-         with open('userinfo '+finout["CNIC: "]+' .txt','w') as file:
-                file.write(finaloutput)
-                print("File is Downloaded")
+    if int(input("Enter 1 or 2: ")) == 1:
+        with open('userinfo ' + finout["CNIC: "] + ' .txt', 'w') as file:
+            file.write(finaloutput)
+            print("File is Downloaded")
     else:
         print("File is not downloaded")
 
