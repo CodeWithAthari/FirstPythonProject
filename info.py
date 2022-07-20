@@ -1,5 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
+''''' 
+in case you discovered this then i should tell you that this is just my first day of python learning cnic info 
+is done using scraping from website cnic.com.pk that i discovered from google.com if you want any of your website to 
+be scraped feel free to contact me on twitter.
+ '' '''
 
 cnic = int(input("Enter CNIC No: "))
 postdata = {"cnicNumber": cnic}
